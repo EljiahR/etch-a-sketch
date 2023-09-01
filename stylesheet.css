@@ -54,3 +54,11 @@ main {
     height: 50px;
     border:1px solid gray;
 }
+
+.size-display p{
+    display: inline;
+}
+
+.eraser.clicked {
+    background-color: brown;
+}
