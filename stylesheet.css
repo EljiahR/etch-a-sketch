@@ -15,22 +15,26 @@ header {
     justify-content: center;
     align-items: center;
 }
-.spacer{
-    height: 80px;
-}
+
 main {
     display: flex;
     justify-content: center;
-}
-.controls {
-    width: 160px;
-    height: 320px;
-    
+    align-items: flex-start;
 }
 
+.controls {
+    width: 160px;
+    height: 500px;
+    background-color: rgb(221, 217, 217);
+    border:3px solid rgb(94, 92, 92);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .container{
-    width: 320px;
-    height:320px;
+    width: 500px;
+    height:500px;
     border: 0;
     display: flex;
     flex-wrap: wrap;
@@ -42,4 +46,11 @@ main {
     height: 6.25%;
     margin: 0;
     background-color: white;
+}
+
+#color-pick{
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
+    border:1px solid gray;
 }
