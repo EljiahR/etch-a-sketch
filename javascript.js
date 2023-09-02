@@ -27,6 +27,9 @@ function draw(e){
     if(canDraw || e.type == 'click'){
         if(eraserFlag){
             this.style.cssText += `background-color: white`
+        }else if(rainbowFlag){
+            const randomColor = Math.floor(Math.random()*16777215).toString(16);
+            this.style.cssText += `background-color: #${randomColor}`;
         }else{
             this.style.cssText += `background-color: ${drawColor}`;
         };
@@ -46,6 +49,16 @@ function setColorToWhite(){
         eraserFlag = false;
     };
 };
+
+function turnOnRainbowMode() {
+    if(!rainbowFlag){
+        rainbowButton.classList.add('clicked')
+        rainbowFlag = true;
+    } else {
+        rainbowButton.classList.remove('clicked')
+        rainbowFlag = false;
+    };
+}
 
 function eraseAllCells(){
     fillContainer(squareSize);
@@ -73,8 +86,11 @@ sizeSelector.addEventListener('change', updateSize);
 const eraserButton = document.querySelector('.eraser');
 let eraserFlag = false;
 const eraseAllButton = document.querySelector('.erase-all');
+const rainbowButton = document.querySelector('.rainbow-mode');
+let rainbowFlag = false;
 eraserButton.addEventListener('click', setColorToWhite);
 eraseAllButton.addEventListener('click', eraseAllCells);
+rainbowButton.addEventListener('click', turnOnRainbowMode);
 
 let canDraw = false;
 let squareSize = 16;

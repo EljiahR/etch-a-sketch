@@ -59,6 +59,6 @@ main {
     display: inline;
 }
 
-.eraser.clicked {
+input[type="button"].clicked {
     background-color: brown;
 }
