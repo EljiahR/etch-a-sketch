@@ -11,7 +11,7 @@ function fillContainer(size){
     cell.classList.add('cell');
     cell.addEventListener('mouseover', draw);
     cell.addEventListener('click', draw);
-    cell.style.cssText = `height: ${(1/size)*100}%; width: ${(1/size)*100}%`;
+    cell.style.cssText = `height: ${(1/size)*100}%; width: ${(1/size)*100}%; background-color: #ffffff`;
     document.querySelector('.container').appendChild(cell);}
 };
 
@@ -26,10 +26,19 @@ function stopDrawing(){
 function draw(e){
     if(canDraw || e.type == 'click'){
         if(eraserFlag){
-            this.style.cssText += `background-color: white`
+            this.style.cssText += `background-color: #ffffff`
         }else if(rainbowFlag){
             const randomColor = Math.floor(Math.random()*16777215).toString(16);
             this.style.cssText += `background-color: #${randomColor}`;
+        }else if(additiveFlag){
+            const rgbValue = this.style.backgroundColor.match(/\d+/g); 
+            const rValue = parseInt(rgbValue[0]) - 25;
+            const gValue = parseInt(rgbValue[1]) - 25;
+            const bValue = parseInt(rgbValue[2]) - 25;
+            const newRGBValue = `rgb(${rValue}, ${gValue}, ${bValue})`;
+            this.style.backgroundColor = newRGBValue;
+            console.log(newRGBValue);
+            
         }else{
             this.style.cssText += `background-color: ${drawColor}`;
         };
@@ -40,7 +49,8 @@ function pickColor(e){
     drawColor = this.value;
 };
 
-function setColorToWhite(){
+
+function toggleEraserMode(){
     if(!eraserFlag){
         eraserButton.classList.add('clicked')
         eraserFlag = true;
@@ -50,7 +60,7 @@ function setColorToWhite(){
     };
 };
 
-function turnOnRainbowMode() {
+function toggleRainbowMode() {
     if(!rainbowFlag){
         rainbowButton.classList.add('clicked')
         rainbowFlag = true;
@@ -58,11 +68,25 @@ function turnOnRainbowMode() {
         rainbowButton.classList.remove('clicked')
         rainbowFlag = false;
     };
-}
+};
+
+function toggleAdditiveMode() {
+    if(!additiveFlag){
+        additiveButton.classList.add('clicked')
+        additiveFlag = true;
+    } else {
+        additiveButton.classList.remove('clicked')
+        additiveFlag = false;
+    };
+};
+
 
 function eraseAllCells(){
+    if(eraserFlag){toggleEraserMode();};
+    if(rainbowFlag){toggleRainbowMode();};
+    if(additiveFlag){toggleAdditiveMode();};
     fillContainer(squareSize);
-}
+};
 
 function updateSize(){
     squareSize = this.value;
@@ -88,12 +112,15 @@ let eraserFlag = false;
 const eraseAllButton = document.querySelector('.erase-all');
 const rainbowButton = document.querySelector('.rainbow-mode');
 let rainbowFlag = false;
-eraserButton.addEventListener('click', setColorToWhite);
+const additiveButton = document.querySelector('.additive-mode');
+let additiveFlag = false;
+eraserButton.addEventListener('click', toggleEraserMode);
 eraseAllButton.addEventListener('click', eraseAllCells);
-rainbowButton.addEventListener('click', turnOnRainbowMode);
+rainbowButton.addEventListener('click', toggleRainbowMode);
+additiveButton.addEventListener('click', toggleAdditiveMode);
 
 let canDraw = false;
 let squareSize = 16;
-let drawColor = "black";
+let drawColor = "#000000";
 fillContainer(squareSize);
 updateSizeDisplay();
