@@ -16,15 +16,18 @@
     
     <main class="main">
         <div class="controls">
-            <input type="color" value="#000000" id="color-pick">
-            <div class="size-display"><h3>Size: </p><p></p></div>
-            <input type="range" id="size-selector" min="0" max="100" value = "16">
-            <div class="erasers">
-                <input type="button" class="eraser" value="Eraser">
-                <input type="button" class="erase-all" value="Erase All">
+            <div class="color">
+                <h3>Pick Color</h3>
+                <input type="color" value="#000000" id="color-pick">
             </div>
-            <input type="button" class="rainbow-mode" value="Rainbow Mode">
-            <input type="button" class="additive-mode" value="Additive Mode">
+            <div class="size-display"><h3>Size: </p><p></p></div>
+            <input type="range" id="size-selector" min="1" max="100" value = "16">
+            <div class="erasers">
+                <button class="eraser">Eraser</button>
+                <button class="erase-all">Erase All</button>
+            </div>
+            <button class="rainbow-mode">Rainbow Mode</button>
+            <button class="additive-mode">Shader Mode</button>
         </div>
         <div class="container"></div>
     </main>

@@ -23,13 +23,14 @@ main {
 }
 
 .controls {
-    width: 160px;
+    width: 180px;
     height: 500px;
     background-color: rgb(221, 217, 217);
     border:3px solid rgb(94, 92, 92);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
 }
 .container{
@@ -48,6 +49,14 @@ main {
     background-color: white;
 }
 
+.color {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 5px;
+}
+
 #color-pick{
     border-radius: 10px;
     width: 100px;
@@ -59,6 +68,11 @@ main {
     display: inline;
 }
 
-input[type="button"].clicked {
+button {
+    font-size: 18px;
+
+}
+
+button.clicked {
     background-color: brown;
 }
